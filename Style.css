@@ -3,8 +3,10 @@ span {
     overflow: visible;
   }
   body {
-    background-color: #212529;
-  }
+  margin:0;
+  min-height:100vh;
+  background: linear-gradient(180deg, #1f285d 0%, #212529 100%);
+}
   /* main elements*/
   /* Cover for Main page*/
   @keyframes CoverPhotoANI{
