@@ -186,3 +186,77 @@ tr:hover {background-color: #F7B21D;}
 .timeline-head {
   color: #F7B21D;
 }
+/* ==========================================
+   MOBILE RESPONSIVENESS OVERRIDES (max-width: 576px)
+   ========================================== */
+@media (max-width: 576px) {
+  
+  /* 1. Fix Cover Photo Text Clipping */
+  .Titletext {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 28px !important; /* Scale text down so it doesn't wrap messily */
+    width: 90%;
+  }
+
+  .TopCover {
+    height: 60vh !important; /* Shorter cover aspect ratio on portrait screens */
+  }
+
+  /* 2. Fix Custom Navbar Scaling */
+  .navbar {
+    padding: 10px 5px !important;
+  }
+  
+  .navbar ul {
+    padding-left: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+
+  .navbar ul li {
+    margin: 5px 10px !important;
+  }
+
+  .nav-text {
+    font-size: 20px !important; /* Shrinks navbar text so it fits on one line */
+  }
+
+  /* 3. Fix Image Backgrounds from stretching/clipping */
+  .top-contbkgrd, .top-aboutbkgrd {
+    background-position: center !important;
+    background-size: cover !important;
+    padding: 3rem 1rem !important;
+  }
+
+  /* 4. Optimize the Timeline for Single-Column Display */
+  .timeline {
+    padding: 20px 10px !important;
+  }
+
+  .timeline .container {
+    padding: 10px 15px !important;
+    width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Force content wrapper blocks to scale cleanly */
+  .timeline .content {
+    width: 100% !important;
+    box-sizing: border-box;
+    padding: 15px !important;
+  }
+
+  /* 5. Scale down headings on tiny viewports */
+  h1.display-5 {
+    font-size: 2rem !important;
+  }
+  
+  .hero-txt {
+    font-size: 1.05rem !important;
+  }
+}
