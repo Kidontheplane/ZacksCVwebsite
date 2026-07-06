@@ -10,10 +10,39 @@
 		<link rel= "stylesheet" href="../Style.css">
 		<link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charsest="UTF-8">
+		<meta charset="UTF-8">
 		<title>
 			Zack's CV
 		</title>
+		<style>
+			/* Form custom styling to mesh with your palette */
+			.form-control {
+				background-color: #2b3035 !important;
+				border: 1px solid #495057 !important;
+				color: #fff !important;
+			}
+			.form-control:focus {
+				background-color: #343a40 !important;
+				border-color: #F7B21D !important;
+				box-shadow: 0 0 0 0.25rem rgba(247, 178, 29, 0.25) !important;
+			}
+			.btn-gold {
+				background-color: #F7B21D !important;
+				border-color: #F7B21D !important;
+				color: #1f285d !important;
+				font-weight: bold;
+			}
+			.btn-gold:hover {
+				background-color: #df9e13 !important;
+				border-color: #df9e13 !important;
+				color: #1f285d !important;
+			}
+			.btn-gold:disabled {
+				background-color: #cca44c !important;
+				border-color: #cca44c !important;
+				opacity: 0.7;
+			}
+		</style>
 	</head>
     <body style="background-color: #212529;">
 		<div class="top-contbkgrd">
@@ -27,7 +56,7 @@
 				<li class="nav-item"><a href="../index.html" class="nav-link nav-text nav-ani" style="color:#1f285d;">Home</a></li>
 				<li class="nav-item"><a href="Contact.html" class="nav-link nav-text nav-ani" style="animation-delay: 500ms; color: #1f285d;">Contact Me</a></li>
 				<li class="nav-item"><a href="Abouty.html" class="nav-link nav-text nav-ani" style="animation-delay: 1s; color:#1f285d;">About Me</a></li>
-				<li class="nav-item"><a href="https://www.linkedin.com/in/zack-mclean-duff-01925b164" target=”_blank” class="nav-link nav-text nav-ani" style="animation-delay: 1.5s;color: #F7B21D;">Linkedin</a></li>
+				<li class="nav-item"><a href="https://www.linkedin.com/in/zack-mclean-duff-01925b164" target="_blank" class="nav-link nav-text nav-ani" style="animation-delay: 1.5s;color: #F7B21D;">Linkedin</a></li>
 			</ul>
 			<script src="../Assets/Script.js"></script>
 			</header>
@@ -35,8 +64,8 @@
         <div class="container px-4 py-5">
 			<div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
 			  <div class="col d-flex flex-column align-items-start gap-2">
-				<h2 class="fw-bold"style="color: white;">Contact Me</h2>
-				<p style="color: white;">Here is some of my infomation to contact me feel free to use these or grab most of my infomation by downloading my contact card.</p>
+				<h2 class="fw-bold" style="color: white;">Contact Me</h2>
+				<p style="color: white;">Here is some of my information to contact me feel free to use these or grab most of my information by downloading my contact card.</p>
 				<a href="../Assets/Zack Mclean-Duff Contact Card.vcf" class="btn btn-primary btn-lg">My Contact Card</a>
 			  </div>
 		
@@ -49,7 +78,7 @@
 					  </svg>
 					</div>
 					<h4 class="fw-semibold mb-0 hero-txt">Email</h4>
-					<p class="text-body-secondary"style="color: white;"><a href="mailto:Zackmacduff@gmail.com">Zackmacduff@gmail.com</a></p>
+					<p class="text-body-secondary" style="color: white;"><a href="mailto:Zackmacduff@gmail.com" style="color: #F7B21D;">Zackmacduff@gmail.com</a></p>
 				  </div>
 		
 				  <div class="col d-flex flex-column gap-2">
@@ -64,12 +93,93 @@
 				</div>
 			  </div>
 			</div>
+
+			<hr style="color: white; opacity: 0.2;" class="my-5">
+
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<h3 class="fw-bold mb-4" style="color: white;">Send a Message</h3>
+					
+					<form id="cvContactForm">
+						<div class="mb-3">
+							<label for="name" class="form-label" style="color: white;">Name</label>
+							<input type="text" class="form-control" id="name" required placeholder="Your Name">
+						</div>
+						
+						<div class="mb-3">
+							<label for="email" class="form-label" style="color: white;">Email Address</label>
+							<input type="email" class="form-control" id="email" required placeholder="your.email@example.com">
+						</div>
+						
+						<div class="mb-3">
+							<label for="message" class="form-label" style="color: white;">Message</label>
+							<textarea class="form-control" id="message" rows="5" required placeholder="How can I help you?"></textarea>
+						</div>
+
+						<input type="text" id="gotcha" style="display:none;" tabindex="-1" autocomplete="off">
+
+						<button type="submit" id="submitBtn" class="btn btn-gold btn-lg w-100 mt-2">Send Message</button>
+					</form>
+					
+					<div id="formStatus" class="alert mt-4 d-none" role="alert"></div>
+				</div>
+			</div>
 		</div>
-	</form-section>
+
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3" style="background-color: #1f285d; color: white;">
 			<div class="col-md-4 d-flex align-items-center">
-			<span class="mb-3 mb-md-0 ">© 2026 Zack McLean-Duff</span>
+			<span class="mb-3 mb-md-0 px-4">© 2026 Zack McLean-Duff</span>
 			</div>
 		</footer>
+
+		<script>
+			document.getElementById('cvContactForm').addEventListener('submit', async (e) => {
+				e.preventDefault();
+				
+				const statusDiv = document.getElementById('formStatus');
+				const submitBtn = document.getElementById('submitBtn');
+				
+				if (document.getElementById('gotcha').value) {
+					return;
+				}
+
+				// Reset status UI
+				statusDiv.className = "alert mt-4 alert-info";
+				statusDiv.innerText = "Sending message...";
+				statusDiv.classList.remove('d-none');
+				submitBtn.disabled = true;
+
+				const formData = {
+					name: document.getElementById('name').value,
+					email: document.getElementById('email').value,
+					message: document.getElementById('message').value
+				};
+
+				try {
+					// Swap this API endpoint to your tunnel domain once it's up!
+					const response = await fetch('http://localhost:3000/submit-form', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(formData)
+					});
+
+					const result = await response.json();
+
+					if (response.ok && result.success) {
+						statusDiv.className = "alert mt-4 alert-success";
+						statusDiv.innerText = "Success! Your message has been routed to my inbox.";
+						document.getElementById('cvContactForm').reset();
+					} else {
+						statusDiv.className = "alert mt-4 alert-danger";
+						statusDiv.innerText = `Error: ${result.error || 'Failed to send.'}`;
+					}
+				} catch (error) {
+					statusDiv.className = "alert mt-4 alert-danger";
+					statusDiv.innerText = "Could not reach the server. Make sure the NUC container or tunnel is running.";
+				} finally {
+					submitBtn.disabled = false;
+				}
+			});
+		</script>
 	</body>
 </html>
