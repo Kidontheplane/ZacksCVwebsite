@@ -157,7 +157,7 @@
 
 				try {
 					// Swap this API endpoint to your tunnel domain once it's up!
-					const response = await fetch('http://localhost:3000/submit-form', {
+					const response = await fetch('https://api.duffnuc.dpdns.org/submit-form', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(formData)
